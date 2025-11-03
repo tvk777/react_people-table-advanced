@@ -146,6 +146,7 @@ export const PeopleFilters = () => {
 
       <div className="panel-block">
         <SearchLink
+          data-cy="resetFilters"
           className={cn('button', 'is-link', 'is-fullwidth', {
             'is-outlined': !isAllFilterCleared,
           })}
