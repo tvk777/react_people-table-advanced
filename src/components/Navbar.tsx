@@ -1,26 +1,33 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import cn from 'classnames';
 
 const getActiveClass = ({ isActive }: { isActive: boolean }) =>
   cn('navbar-item', { 'has-background-grey-lighter': isActive });
 
-export const NavBar = () => (
-  <nav
-    data-cy="nav"
-    className="navbar is-fixed-top has-shadow"
-    role="navigation"
-    aria-label="main navigation"
-  >
-    <div className="container">
-      <div className="navbar-brand">
-        <NavLink className={getActiveClass} to="/">
-          Home
-        </NavLink>
+export const NavBar = () => {
+  const [searchParams] = useSearchParams();
 
-        <NavLink className={getActiveClass} to="people">
-          People
-        </NavLink>
+  return (
+    <nav
+      data-cy="nav"
+      className="navbar is-fixed-top has-shadow"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div className="container">
+        <div className="navbar-brand">
+          <NavLink className={getActiveClass} to="/">
+            Home
+          </NavLink>
+
+          <NavLink
+            className={getActiveClass}
+            to={`people?${searchParams.toString()}`}
+          >
+            People
+          </NavLink>
+        </div>
       </div>
-    </div>
-  </nav>
-);
+    </nav>
+  );
+};
